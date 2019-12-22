@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './index.css';
 import './App.css';
 import Navigation from './components/Naviagtion/Navigation';
@@ -9,6 +9,16 @@ import Particles from 'react-particles-js';
 
 
 function App() {
+  const [input, setInput] = useState('');
+
+  const onInputChange = (e) => {
+    console.log(e.target.value);
+  }
+
+  const onButtonSubmit = () => {
+    console.log('Submit');
+  }
+
   return (
     <div className="App">
       <Particles
@@ -18,7 +28,10 @@ function App() {
       <Navigation />
       <Logo />
       <Rank />
-      <ImageLinkForm />
+      <ImageLinkForm 
+        onInputChange={onInputChange} 
+        onButtonSubmit={onButtonSubmit}
+      />
 
       {/*
       <FaceRegognition /> */}
