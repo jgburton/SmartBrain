@@ -11,25 +11,28 @@ import Clarifai from 'clarifai';
 
 
 function App() {
-  // const [input, setInput] = useState('');
+  const [input, setInput] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
 
   const app = new Clarifai.App({
     apiKey: 'd19ff8c77c204b639080fd91e839064f'
   });
 
   const onInputChange = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
+    setInput(e.target.value);
   }
 
   const onButtonSubmit = () => {
-    console.log('Submit');
+    // console.log('Submit');
+    setImageUrl(input);
 
     app.models.predict(
-      "a403429f2ddf4b49b307e318f00e528b",
-      "https://samples.clarifai.com/face-det.jpg")
+      Clarifai.FACE_DETECT_MODEL,
+      input)
       .then(
         function (response) {
-          console.log(response);
+          console.log(response.outputs[0].data.regions[0].region_info.bounding_box);
         },
         function (err) {
           console.log(err);
@@ -50,7 +53,8 @@ function App() {
         onInputChange={onInputChange}
         onButtonSubmit={onButtonSubmit}
       />
-      <FaceRecognition />
+      <FaceRecognition imageUrl={imageUrl} />
+     
 
     </div>
   );
