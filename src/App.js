@@ -37,15 +37,11 @@ function App() {
   }
 
   const onInputChange = (e) => {
-    // console.log(e.target.value);
     setInput(e.target.value);
   };
 
-
   const onButtonSubmit = () => {
-    // console.log('Submit');
     setImageUrl(input);
-
     app.models
       .predict(
         Clarifai.FACE_DETECT_MODEL,
