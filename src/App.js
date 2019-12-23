@@ -7,6 +7,7 @@ import Logo from './components/Logo/Logo';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
 import Signin from './components/Signin/Signin';
+import Register from './components/Register/Register';
 import Particles from 'react-particles-js';
 import Clarifai from 'clarifai';
 
@@ -64,9 +65,8 @@ function App() {
         params={particlesOptions}
       />
       <Navigation onRouteChange={onRouteChange} />
-      {route === 'signin' ?
-        <Signin onRouteChange={onRouteChange} />
-        : <>
+      {route === 'home' ?
+       <>
           <Logo />
           <Rank />
           <ImageLinkForm
@@ -75,6 +75,12 @@ function App() {
           />
           <FaceRecognition box={box} imageUrl={imageUrl} />
         </>
+        : (
+          route === 'signin' ? 
+          <Signin onRouteChange={onRouteChange} /> 
+          : 
+          <Register onRouteChange={onRouteChange} />
+        )
       }
     </div>
   );
