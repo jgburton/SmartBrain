@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import './Signin.css';
 
 const Signin = ({onRouteChange}) => {
-    const [signInEmail, setSignInEmail ] = useState('');
-    const [signInPassword, setSignInPassword ] = useState('');
+    const [signInEmail, setSignInEmail] = useState('');
+    const [signInPassword, setSignInPassword] = useState('');
 
     const onEmailChange = (e) => {
         setSignInEmail(e.target.value);
@@ -13,7 +13,7 @@ const Signin = ({onRouteChange}) => {
     }
     const onSubmitSignIn = () => {
         console.log("signInEmail:" + signInEmail, "signInPassword:" + signInPassword);
-        fetch('https//localhost:3000/signin', {
+        fetch('http://localhost:3000/signin', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -23,11 +23,10 @@ const Signin = ({onRouteChange}) => {
         })
         .then(response => response.json())
         .then(data => {
-            if (data === 'success') {
+            if (data === 'success!') {
                 onRouteChange('home');
             }
-        })
-        
+        }) 
     }
 
     return (
