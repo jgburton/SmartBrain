@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './index.css';
 import './App.css';
 import Navigation from './components/Naviagtion/Navigation';
@@ -21,6 +21,13 @@ function App() {
   const [box, setBox] = useState({});
   const [route, setRoute] = useState('signin');
   const [isSignedIn, setIsSignedIn] = useState(false);
+
+  useEffect(() => {
+    fetch('http://localhost:3000/')
+      .then(response => response.json())
+      .then(console.log)
+  });
+  
 
   const calculateFaceLocation = (data) => {
     const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box;
