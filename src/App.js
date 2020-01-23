@@ -68,6 +68,7 @@ function App() {
     setInput(e.target.value);
   };
 
+  // **************************************
   const onButtonSubmit = () => {
     setImageUrl(input);
     app.models
@@ -75,9 +76,21 @@ function App() {
         Clarifai.FACE_DETECT_MODEL,
         input
       )
-      .then(response => displayFaceBox(calculateFaceLocation(response)))
+      .then(response => {
+        if (response) {
+          fetch('http://localhost:3000/image', {
+            method: 'post',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                id: user.id
+            })
+          })
+        }
+        displayFaceBox(calculateFaceLocation(response))
+      })
       .catch(err => console.log(err));
   };
+  // **************************************
 
   const onRouteChange = (route) => {
     setRoute(route);
@@ -96,7 +109,7 @@ function App() {
       {route === 'home' ?
         <>
           <Logo />
-          <Rank />
+          <Rank name={user.name} entries={user.entries}/>
           <ImageLinkForm
             onInputChange={onInputChange}
             onButtonSubmit={onButtonSubmit}
@@ -105,7 +118,7 @@ function App() {
         </>
         : (
           route === 'signin' ?
-            <Signin onRouteChange={onRouteChange} />
+            <Signin loadUser={loadUser} onRouteChange={onRouteChange} />
             :
             <Register user={user} loadUser={loadUser} onRouteChange={onRouteChange} />
         )
