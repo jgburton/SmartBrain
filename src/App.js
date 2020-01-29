@@ -87,9 +87,11 @@ function App() {
           })
             .then(response => response.json())
             .then(count => {
-              setUser({
-                entries: count
-              }
+              setUser(
+                {
+                  ...user,
+                  entries: count
+                }
               )
             })
         }
