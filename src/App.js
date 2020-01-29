@@ -79,12 +79,19 @@ function App() {
       .then(response => {
         if (response) {
           fetch('http://localhost:3000/image', {
-            method: 'post',
-            headers: {'Content-Type': 'application/json'},
+            method: 'put',
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                id: user.id
+              id: user.id
             })
           })
+            .then(response => response.json())
+            .then(count => {
+              setUser({
+                entries: count
+              }
+              )
+            })
         }
         displayFaceBox(calculateFaceLocation(response))
       })
@@ -109,7 +116,7 @@ function App() {
       {route === 'home' ?
         <>
           <Logo />
-          <Rank name={user.name} entries={user.entries}/>
+          <Rank name={user.name} entries={user.entries} />
           <ImageLinkForm
             onInputChange={onInputChange}
             onButtonSubmit={onButtonSubmit}
