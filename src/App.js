@@ -30,12 +30,12 @@ function App() {
   });
 
   useEffect(() => {
-    fetch('http://localhost:3000/')
+    fetch('http://localhost:3001/')
       .then(response => response.json())
-      .then(console.log)
   });
 
   const loadUser = (data) => {
+    console.log('name!!: ' + data.name + ', entries!!: ' + data.entries);
     setUser({
       id: data.id,
       name: data.name,
@@ -61,15 +61,16 @@ function App() {
 
   const displayFaceBox = (box) => {
     setBox(box);
-    // console.log(box);
   }
 
   const onInputChange = (e) => {
     setInput(e.target.value);
   };
 
-  // **************************************
+
+  //issue is arrising here, entries is not incremented onButtonSubmit - it remains undefined 
   const onButtonSubmit = () => {
+    console.log(user);
     setImageUrl(input);
     app.models
       .predict(
@@ -78,7 +79,7 @@ function App() {
       )
       .then(response => {
         if (response) {
-          fetch('http://localhost:3000/image', {
+          fetch('http://localhost:3001/image', {
             method: 'put',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -99,7 +100,8 @@ function App() {
       })
       .catch(err => console.log(err));
   };
-  // **************************************
+  //issue is arrising here, entries is not incremented onButtonSubmit - it remains undefined 
+
 
   const onRouteChange = (route) => {
     setRoute(route);

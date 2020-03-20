@@ -11,8 +11,8 @@ const Signin = ({onRouteChange, loadUser}) => {
     const onPasswordChange = (e) => {
         setSignInPassword(e.target.value);
     }
+
     const onSubmitSignIn = () => {
-        console.log("signInEmail:" + signInEmail, "signInPassword:" + signInPassword);
         fetch('http://localhost:3000/signin', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},

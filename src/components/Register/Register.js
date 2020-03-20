@@ -16,20 +16,20 @@ const Register = ({onRouteChange, loadUser, user}) => {
         setRegisterPassword(e.target.value);
     }
     const onSubmitRegister = () => {
-        console.log("registerName:" + registerName, "registerEmail:" + registerEmail, "resgisterPassword:" + registerPassword);
+        // console.log("registerName:" + registerName, "registerEmail:" + registerEmail, "resgisterPassword:" + registerPassword);
         
-
         fetch('http://localhost:3000/register', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
+                name: registerName,
                 email: registerEmail,
                 password: registerPassword
             })
         })
         .then(response => response.json())
-        .then(data => {
-            if (user) {
+        .then(user => {
+            if (user.id) {
                 loadUser(user);
                 onRouteChange('home');
             }
