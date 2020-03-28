@@ -15,9 +15,7 @@ const Register = ({onRouteChange, loadUser, user}) => {
     const onPasswordChange = (e) => {
         setRegisterPassword(e.target.value);
     }
-    const onSubmitRegister = () => {
-        // console.log("registerName:" + registerName, "registerEmail:" + registerEmail, "resgisterPassword:" + registerPassword);
-        
+    const onSubmitRegister = () => { 
         fetch('http://localhost:3000/register', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
