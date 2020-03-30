@@ -13,7 +13,7 @@ const Signin = ({onRouteChange, loadUser}) => {
     }
 
     const onSubmitSignIn = () => {
-        fetch('https://fathomless-brook-60337.herokuapp.com:3000/signin', {
+        fetch('https://fathomless-brook-60337.herokuapp.com/signin', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({

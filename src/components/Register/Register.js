@@ -17,7 +17,7 @@ const Register = ({onRouteChange, loadUser, user}) => {
     }
     
     const onSubmitRegister = () => { 
-        fetch('https://fathomless-brook-60337.herokuapp.com:3000/register', {
+        fetch('https://fathomless-brook-60337.herokuapp.com/register', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
