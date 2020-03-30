@@ -15,8 +15,9 @@ const Register = ({onRouteChange, loadUser, user}) => {
     const onPasswordChange = (e) => {
         setRegisterPassword(e.target.value);
     }
+    
     const onSubmitRegister = () => { 
-        fetch('http://localhost:3000/register', {
+        fetch('https://fathomless-brook-60337.herokuapp.com:3000/register', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
