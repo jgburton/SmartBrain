@@ -1,6 +1,6 @@
 https://smart-brain-3-2020.herokuapp.com/ 
 
-![Image of Smart-Brain](https://github.com/jgburton/SmartBrain/images/screenshot.png)
+![Image of Smart-Brain](/images/screenshot.png)
 
 
 
